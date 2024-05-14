@@ -1,0 +1,30 @@
+<div class="chat-container">
+    <div class="chat-messages">
+        <div class="grid gap-y-2">
+
+            <app-chat-message text="Hola , soy tu asistente que texto quieres convertir a audio?" />
+  
+            @for (message of messages(); track $index) {
+                @if (message.isGpt) {
+                    <app-chat-message 
+                        [text]="message.text" 
+                        [audioUrl]="message.audioUrl"
+                    />
+                }@else {
+                    <app-my-message [text]="message.text" />
+                }
+            }
+
+            @if (isLoading()) {
+                <app-typing-loader />
+            }
+
+        </div>
+    </div>
+
+
+    <app-text-message-select-box [placeholder]="'Escribe aqui tu mensaje'"
+        [options]="voices()"
+        (onMessage)="handleMessageWithSelect($event)" />
+
+</div>

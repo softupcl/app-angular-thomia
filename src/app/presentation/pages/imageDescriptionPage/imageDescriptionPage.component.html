@@ -1,0 +1,40 @@
+<div class="chat-container">
+    <div class="chat-messages">
+        <div class="grid gap-y-2">
+
+            <app-chat-message text="Hola, soy ThomIA tu asistente , que imagen quieres describir?" />
+
+            @for (message of messages(); track $index) {
+                @if (message.isGpt) {
+                 <app-chat-message [text]="message.text" />
+                }@else {
+                 <app-my-message [text]="message.text" />
+                }
+            }
+
+            @if(typeFile() === 'image'){
+                 <img 
+                    [src]="imageFile"
+                    alt="Imagen a describir"
+                    class="border rounded-xl object-contain" 
+                    width="750"
+                    height="750"
+                /> 
+            }
+
+            @if (isLoading()) {
+                <app-typing-loader />
+            }
+
+        </div>
+    </div>
+
+
+    <app-text-message-file-box 
+        [placeholder]="'Sube un archivo de audio para convertirlo a texto'"
+        (onMessage)="handleMessageFile($event)" 
+    />
+
+    
+
+</div>
