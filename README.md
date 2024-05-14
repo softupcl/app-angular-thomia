@@ -1,4 +1,4 @@
-# App thomia
+# App thomia Angular
 
 ## Dev
 1. Clonar repositorio
