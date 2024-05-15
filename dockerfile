@@ -32,10 +32,10 @@ EXPOSE 80
 COPY --from=build /app/dist/angular-gpt/browser /usr/share/nginx/html
 
 RUN rm /etc/nginx/conf.d/default.conf
-RUN rm /etc/nginx/mime.types
+#RUN rm /etc/nginx/mime.types
 
 COPY nginx/nginx.conf /etc/nginx/conf.d
-COPY nginx/mime.types /etc/nginx
+#COPY nginx/mime.types /etc/nginx
 
 CMD [ "nginx","-g", "daemon off;" ]
 
